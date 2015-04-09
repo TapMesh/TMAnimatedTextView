@@ -28,42 +28,54 @@
                                     <outlet property="animatedTextViewDelegate" destination="BYZ-38-t0r" id="3UL-DX-YtI"/>
                                 </connections>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k8Y-xU-9j5">
-                                <rect key="frame" x="270" y="285" width="61" height="30"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ygU-cu-CrH">
+                                <rect key="frame" x="189" y="165" width="222" height="95"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFn-OV-xzD">
+                                        <rect key="frame" x="8" y="57" width="75" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Vnt-Yh-ohM"/>
+                                            <constraint firstAttribute="width" constant="75" id="xa0-qs-bKb"/>
+                                        </constraints>
+                                        <state key="normal" title="Add Image">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CL4-iE-wmI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k8Y-xU-9j5">
+                                        <rect key="frame" x="153" y="57" width="61" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="61" id="KXu-Tn-8Qk"/>
+                                            <constraint firstAttribute="height" constant="30" id="fkK-We-7ZZ"/>
+                                        </constraints>
+                                        <state key="normal" title="Add Text">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ITh-i0-hfZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="61" id="KXu-Tn-8Qk"/>
-                                    <constraint firstAttribute="height" constant="30" id="fkK-We-7ZZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="KFn-OV-xzD" secondAttribute="bottom" constant="8" id="4sd-a9-xOT"/>
+                                    <constraint firstItem="KFn-OV-xzD" firstAttribute="leading" secondItem="ygU-cu-CrH" secondAttribute="leading" constant="8" id="7nR-uK-osf"/>
+                                    <constraint firstAttribute="bottom" secondItem="k8Y-xU-9j5" secondAttribute="bottom" constant="8" id="h6v-sm-HyV"/>
+                                    <constraint firstAttribute="height" constant="95" id="hnP-hB-ETq"/>
+                                    <constraint firstAttribute="trailing" secondItem="k8Y-xU-9j5" secondAttribute="trailing" constant="8" id="pCd-MT-Aum"/>
+                                    <constraint firstAttribute="width" constant="222" id="vUN-ZU-f9k"/>
                                 </constraints>
-                                <state key="normal" title="Add Text">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="addText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ITh-i0-hfZ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFn-OV-xzD">
-                                <rect key="frame" x="263" y="323" width="75" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Vnt-Yh-ohM"/>
-                                    <constraint firstAttribute="width" constant="75" id="xa0-qs-bKb"/>
-                                </constraints>
-                                <state key="normal" title="Add Image">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="addImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CL4-iE-wmI"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="KFn-OV-xzD" secondAttribute="centerX" id="OhL-ch-7HS"/>
-                            <constraint firstAttribute="centerX" secondItem="k8Y-xU-9j5" secondAttribute="centerX" id="X5d-dW-UOf"/>
+                            <constraint firstItem="zpi-xo-weP" firstAttribute="top" secondItem="ygU-cu-CrH" secondAttribute="bottom" constant="8" id="COQ-lY-1xw"/>
+                            <constraint firstAttribute="centerX" secondItem="ygU-cu-CrH" secondAttribute="centerX" id="YL7-df-GPX"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zpi-xo-weP" secondAttribute="bottom" constant="272" id="cYB-3F-oOO"/>
                             <constraint firstAttribute="trailing" secondItem="zpi-xo-weP" secondAttribute="trailing" id="db5-cF-ita"/>
                             <constraint firstItem="zpi-xo-weP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="grA-hI-BuZ"/>
-                            <constraint firstItem="KFn-OV-xzD" firstAttribute="top" secondItem="k8Y-xU-9j5" secondAttribute="bottom" constant="8" id="oSL-Mc-6t1"/>
-                            <constraint firstItem="k8Y-xU-9j5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="265" id="pa7-4g-uap"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zpi-xo-weP" secondAttribute="bottom" constant="272" id="qJZ-bg-79K"/>
                         </constraints>
                     </view>
                     <connections>
