@@ -31,9 +31,9 @@
 @interface TMTextAttachment : NSTextAttachment
 
 @property(nonatomic, readonly) CGSize expectedSize;
-@property(nonatomic, readonly) id<TMAttachmentData> data;
+@property(nonatomic, readonly) id <TMAttachmentData> data;
 
-- (instancetype) initWithAttachmentData:(id<TMAttachmentData>)data bounds:(CGRect)bounds;
+- (instancetype) initWithAttachmentData:(id <TMAttachmentData>)data bounds:(CGRect)bounds;
 
 @end
 
@@ -68,8 +68,8 @@
 
 - (instancetype) initWithFrame:(CGRect)frame chatTextView:(TMAnimatedTextView *)textView;
 
-- (void) registerData:(id<TMAttachmentData>)data actualImage:(UIImage *)image;
-- (void) unregisterData:(id<TMAttachmentData>)data;
+- (void) registerData:(id <TMAttachmentData>)data actualImage:(UIImage *)image;
+- (void) unregisterData:(id <TMAttachmentData>)data;
 
 - (void) animateData:(id <TMAttachmentData>)data withAnimation:(void (^)(UIImageView *imageView))animationBlock;
 
@@ -90,7 +90,7 @@
     return self;
 }
 
-- (void)calculateAll {
+- (void) calculateAll {
     NSMutableArray *cardIdsToRemove = [NSMutableArray array];
     for (NSString *identifier in _attachmentViews.keyEnumerator) {
         UIImageView *imageView = _attachmentViews[identifier];
@@ -107,13 +107,13 @@
     [_attachmentViews removeObjectsForKeys:cardIdsToRemove];
 }
 
-- (void) registerData:(id<TMAttachmentData>)data actualImage:(UIImage *)image {
+- (void) registerData:(id <TMAttachmentData>)data actualImage:(UIImage *)image {
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     [self addSubview:imageView];
     _attachmentViews[data.identifier] = imageView;
 }
 
-- (void) unregisterData:(id<TMAttachmentData>)data {
+- (void) unregisterData:(id <TMAttachmentData>)data {
     UIImageView *existingImageView = _attachmentViews[data.identifier];
     if (existingImageView) {
         [existingImageView removeFromSuperview];
@@ -167,9 +167,8 @@
         }
     }
 
-    if (!_heightConstraint) {
+    if (!_heightConstraint)
         [NSException raise:NSInternalInconsistencyException format:@"Animated text view requires a height constraint"];
-    }
 
     self.layer.borderColor = [[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor];
     self.layer.borderWidth = 1.0f;
@@ -224,18 +223,18 @@
     [super layoutSubviews];
 
     CGSize intrinsicSize = self.intrinsicContentSize;
-    if (self.minHeight) {
+    if (self.minHeight)
         intrinsicSize.height = MAX(intrinsicSize.height, self.minHeight);
-    }
-    if (self.maxHeight) {
+
+    if (self.maxHeight)
         intrinsicSize.height = MIN(intrinsicSize.height, self.maxHeight);
-    }
+
     _heightConstraint.constant = intrinsicSize.height;
 
     if (self.intrinsicContentSize.height <= self.bounds.size.height) {
-        CGFloat topCorrect = (CGFloat) ((self.bounds.size.height - self.contentSize.height * [self zoomScale]) / 2.0);
-        topCorrect = (CGFloat) (topCorrect < 0.0 ? 0.0 : topCorrect);
-        self.contentOffset = (CGPoint) {.x = 0, .y = -topCorrect};
+        CGFloat topCorrect = (CGFloat)((self.bounds.size.height - self.contentSize.height * [self zoomScale]) / 2.0);
+        topCorrect = (CGFloat)(topCorrect < 0.0 ? 0.0 : topCorrect);
+        self.contentOffset = CGPointMake(0, -topCorrect);
     }
     [_overview calculateAll];
 }
@@ -266,7 +265,7 @@
     return finalImage;
 };
 
-- (void) attachData:(id<TMAttachmentData>)data {
+- (void) attachData:(id <TMAttachmentData>)data {
     BOOL shouldAdd = YES;
     if (_animatedTextViewDelegate && [_animatedTextViewDelegate respondsToSelector:@selector(shouldAddAttachmentData:)]) {
         shouldAdd = [_animatedTextViewDelegate shouldAddAttachmentData:data];
@@ -278,7 +277,7 @@
 
         UITextRange *selRange = self.selectedTextRange;
         UITextPosition *selStartPos = selRange.start;
-        NSUInteger index = (NSUInteger) [self offsetFromPosition:self.beginningOfDocument toPosition:selStartPos];
+        NSUInteger index = (NSUInteger)[self offsetFromPosition:self.beginningOfDocument toPosition:selStartPos];
 
         TMTextAttachment *attachment = [[TMTextAttachment alloc] initWithAttachmentData:data bounds:CGRectMake(0, -5, visibleImage.size.width / 2, visibleImage.size.height / 2)];
         attachment.image = placeholderImage;
@@ -287,7 +286,7 @@
         NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithAttributedString:self.attributedText];
 
         NSMutableAttributedString *attributedString = [[NSAttributedString attributedStringWithAttachment:attachment] mutableCopy];
-        [attributedString addAttribute:NSFontAttributeName value:self.font range:(NSRange){0,[attributedString length]}];
+        [attributedString addAttribute:NSFontAttributeName value:self.font range:(NSRange){0, [attributedString length]}];
         [string insertAttributedString:attributedString atIndex:index];
 
         self.attributedText = string;
@@ -309,9 +308,9 @@
 
 + (void) selectTextForInput:(UITextView *)input atRange:(NSRange)range {
     UITextPosition *startPosition = [input positionFromPosition:[input beginningOfDocument]
-                                                 offset:range.location];
+                                                         offset:range.location];
     UITextPosition *endPosition = [input positionFromPosition:startPosition
-                                               offset:range.length];
+                                                       offset:range.length];
     [input setSelectedTextRange:[input textRangeFromPosition:startPosition toPosition:endPosition]];
 }
 
@@ -321,7 +320,7 @@
     NSRange limitRange = NSMakeRange(0, [self.attributedText length]);
     [self.attributedText enumerateAttribute:NSAttachmentAttributeName inRange:limitRange options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(NSTextAttachment *attachment, NSRange range, BOOL *stop) {
         if (attachment) {
-            TMTextAttachment *textAttachment = (TMTextAttachment *) attachment;
+            TMTextAttachment *textAttachment = (TMTextAttachment *)attachment;
             if ([textAttachment.data.identifier isEqualToString:identifier]) {
                 result = YES;
                 *stop = YES;
@@ -338,7 +337,7 @@
     NSRange limitRange = NSMakeRange(0, [self.attributedText length]);
     [self.attributedText enumerateAttribute:NSAttachmentAttributeName inRange:limitRange options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(NSTextAttachment *attachment, NSRange range, BOOL *stop) {
         if (attachment) {
-            TMTextAttachment *textAttachment = (TMTextAttachment *) attachment;
+            TMTextAttachment *textAttachment = (TMTextAttachment *)attachment;
             if ([textAttachment.data.identifier isEqualToString:identifier]) {
                 result = [self.layoutManager boundingRectForGlyphRange:range inTextContainer:self.textContainer];
                 result.origin.x += self.textContainerInset.left;
@@ -413,7 +412,7 @@
     if (_animatedTextViewDelegate && [_animatedTextViewDelegate respondsToSelector:@selector(shouldDeleteAttachmentData:)]) {
         [textView.attributedText enumerateAttribute:NSAttachmentAttributeName inRange:textRange options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(NSTextAttachment *attachment, NSRange range, BOOL *stop) {
             if (attachment && shouldDelete) {
-                TMTextAttachment *textAttachment = (TMTextAttachment *) attachment;
+                TMTextAttachment *textAttachment = (TMTextAttachment *)attachment;
                 shouldDelete &= [_animatedTextViewDelegate shouldDeleteAttachmentData:textAttachment.data];
             }
         }];
@@ -422,7 +421,7 @@
     if (shouldDelete && _animatedTextViewDelegate && [_animatedTextViewDelegate respondsToSelector:@selector(didDeleteAttachmentData:)]) {
         [textView.attributedText enumerateAttribute:NSAttachmentAttributeName inRange:textRange options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(NSTextAttachment *attachment, NSRange range, BOOL *stop) {
             if (attachment) {
-                TMTextAttachment *textAttachment = (TMTextAttachment *) attachment;
+                TMTextAttachment *textAttachment = (TMTextAttachment *)attachment;
                 [_overview unregisterData:textAttachment.data];
                 [_animatedTextViewDelegate didDeleteAttachmentData:textAttachment.data];
             }
