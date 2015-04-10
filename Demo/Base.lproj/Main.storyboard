@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpi-xo-weP" customClass="TMAnimatedTextView">
-                                <rect key="frame" x="0.0" y="268" width="600" height="60"/>
+                                <rect key="frame" x="0.0" y="240" width="600" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="OVS-8g-pTu"/>
@@ -29,7 +29,7 @@
                                 </connections>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ygU-cu-CrH">
-                                <rect key="frame" x="189" y="165" width="222" height="95"/>
+                                <rect key="frame" x="189" y="137" width="222" height="95"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFn-OV-xzD">
                                         <rect key="frame" x="8" y="57" width="75" height="30"/>
@@ -73,7 +73,7 @@
                         <constraints>
                             <constraint firstItem="zpi-xo-weP" firstAttribute="top" secondItem="ygU-cu-CrH" secondAttribute="bottom" constant="8" id="COQ-lY-1xw"/>
                             <constraint firstAttribute="centerX" secondItem="ygU-cu-CrH" secondAttribute="centerX" id="YL7-df-GPX"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zpi-xo-weP" secondAttribute="bottom" constant="272" id="cYB-3F-oOO"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zpi-xo-weP" secondAttribute="bottom" constant="300" id="cYB-3F-oOO"/>
                             <constraint firstAttribute="trailing" secondItem="zpi-xo-weP" secondAttribute="trailing" id="db5-cF-ita"/>
                             <constraint firstItem="zpi-xo-weP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="grA-hI-BuZ"/>
                         </constraints>
