@@ -236,6 +236,7 @@
         topCorrect = (CGFloat)(topCorrect < 0.0 ? 0.0 : topCorrect);
         self.contentOffset = CGPointMake(0, -topCorrect);
     }
+    _overview.frame = CGRectMake(0.0f, 0.0f, self.frame.size.width, self.frame.size.height);
     [_overview calculateAll];
 }
 
