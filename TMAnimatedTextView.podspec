@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.license      = "Apache License, Version 2.0"
   s.author             = { "bobwieler" => "bob.wieler@tapmesh.com" }
   s.social_media_url   = "http://twitter.com/bobwieler"
-  s.platform     = :ios
+  s.platform     = :ios, '7.1'
   s.source       = { :git => "https://github.com/TapMesh/TMAnimatedTextView.git", :tag => s.version.to_s }
   s.source_files  = "TMAnimatedTextView", "TMAnimatedTextView/**/*.{h,m}"
   s.requires_arc = true
